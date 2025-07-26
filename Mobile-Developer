@@ -1,0 +1,225 @@
+
+# __NODE.js__
+
+## Iniciando no NODE.js 
+
+
+## Passo a Passo: Começando um Projeto Node.js no VS Code
+
+### 1\. Pré-requisitos
+
+Antes de começar, certifique-se de ter o seguinte instalado:
+
+  * **Node.js e npm (Node Package Manager):** Você pode baixá-los do site oficial do Node.js ([nodejs.org](https://www.google.com/search?q=https://nodejs.org/)). A instalação do Node.js já inclui o npm.
+      * Para verificar se estão instalados, abra o terminal (ou prompt de comando) e digite:
+        ```bash
+        node -v
+        npm -v
+        ```
+        Você deverá ver as versões instaladas.
+  * **VS Code (Visual Studio Code):** Se você ainda não o tem, baixe-o do site oficial do VS Code ([code.visualstudio.com](https://code.visualstudio.com/)).
+
+-----
+
+### 2\. Criando a Pasta do Projeto
+
+Primeiro, crie uma pasta para o seu novo projeto.
+
+1.  Abra o **Explorador de Arquivos** (Windows) ou **Finder** (macOS).
+2.  Crie uma nova pasta onde você deseja que seu projeto resida (ex: `meu-projeto-node`).
+
+-----
+
+### 3\. Abrindo o Projeto no VS Code
+
+Agora, abra essa pasta no VS Code:
+
+1.  Abra o **VS Code**.
+2.  Vá em **File \> Open Folder...** (ou **Arquivo \> Abrir Pasta...**).
+3.  Navegue até a pasta que você acabou de criar e selecione-a.
+
+-----
+
+### 4\. Inicializando o Projeto Node.js (npm init)
+
+Dentro do VS Code, vamos inicializar o projeto Node.js usando o npm. Isso criará o arquivo `package.json`, que gerencia as dependências do seu projeto e outras configurações.
+
+1.  Abra o **Terminal Integrado** no VS Code. Você pode fazer isso indo em **Terminal \> New Terminal** (ou **Terminal \> Novo Terminal**) ou usando o atalho `Ctrl + '` (crase).
+
+2.  No terminal, digite o seguinte comando e pressione Enter:
+
+    ```bash
+    npm init -y
+    ```
+
+      * A flag `-y` (yes) aceita todas as opções padrão, criando o `package.json` automaticamente. Se você quiser preencher as informações manualmente (nome do projeto, descrição, etc.), omita o `-y` e siga as instruções no terminal.
+
+    Você verá um arquivo `package.json` criado na raiz do seu projeto.
+
+-----
+
+### 5\. Criando Seu Primeiro Arquivo Node.js
+
+Agora, vamos criar um arquivo JavaScript para rodar com Node.js.
+
+1.  No **Explorador de Arquivos** do VS Code (barra lateral esquerda), clique no ícone **New File** (novo arquivo) na sua pasta de projeto (o primeiro ícone, que parece uma folha com um sinal de mais).
+2.  Dê ao arquivo o nome `app.js` (ou `index.js`, ou qualquer outro nome que preferir para o seu ponto de entrada principal).
+3.  Adicione um código simples dentro de `app.js`, por exemplo:
+    ```javascript
+    console.log("Olá do meu projeto Node.js!");
+
+    const http = require('http');
+
+    const hostname = '127.0.0.1';
+    const port = 3000;
+
+    const server = http.createServer((req, res) => {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('Hello World\n');
+    });
+
+    server.listen(port, hostname, () => {
+      console.log(`Servidor rodando em http://${hostname}:${port}/`);
+    });
+    ```
+
+-----
+
+### 6\. Executando o Projeto Node.js
+
+Para executar seu arquivo Node.js:
+
+1.  Certifique-se de que você ainda está no **Terminal Integrado** do VS Code e que o diretório atual é a raiz do seu projeto.
+2.  Digite o seguinte comando e pressione Enter:
+    ```bash
+    node app.js
+    ```
+    Você deverá ver a mensagem "Olá do meu projeto Node.js\!" e "Servidor rodando em [http://127.0.0.1:3000/](https://www.google.com/url?sa=E&source=gmail&q=http://127.0.0.1:3000/)" (se você usou o código de exemplo do servidor HTTP) no terminal. Se você abriu o navegador e acessou `http://127.0.0.1:3000/`, deverá ver "Hello World".
+
+-----
+
+### 7\. Instalando Dependências (Exemplo: Express.js)
+
+A maioria dos projetos Node.js usa pacotes de terceiros. Vamos instalar um popular: Express.js, um framework web.
+
+1.  No Terminal Integrado, digite:
+
+    ```bash
+    npm install express
+    ```
+
+      * Isso instalará o Express e o adicionará como uma dependência no seu arquivo `package.json` (dentro da seção `dependencies`). Uma nova pasta `node_modules` também será criada, contendo todos os arquivos das dependências.
+
+2.  Para usar o Express no seu `app.js`, você faria algo assim (substitua o conteúdo atual do `app.js` ou crie um novo arquivo, ex: `server.js`):
+
+    ```javascript
+    const express = require('express');
+    const app = express();
+    const port = 3000;
+
+    app.get('/', (req, res) => {
+      res.send('Olá com Express!');
+    });
+
+    app.listen(port, () => {
+      console.log(`Aplicativo Express rodando em http://localhost:${port}`);
+    });
+    ```
+
+3.  Para rodar o novo arquivo (se você o chamou de `server.js`):
+
+    ```bash
+    node server.js
+    ```
+
+-----
+
+### 8\. Dicas Adicionais para o VS Code
+
+  * **Extensões:** O VS Code tem muitas extensões úteis para Node.js. Algumas recomendadas são:
+      * **JavaScript (ES6) code snippets:** Para atalhos de código.
+      * **Prettier - Code formatter:** Para formatar seu código automaticamente.
+      * **ESLint:** Para ajudar a identificar e corrigir problemas de linting em seu código JavaScript.
+  * **Depuração (Debugging):** O VS Code tem um depurador integrado excelente. Para usá-lo:
+    1.  Coloque um "breakpoint" clicando na margem esquerda da linha de código.
+    2.  Vá para a visão "Run and Debug" (Executar e Depurar) na barra lateral esquerda (ícone de inseto).
+    3.  Clique no botão verde "Run and Debug" (Executar e Depurar) ou configure um `launch.json`.
+
+-----
+
+## Quais os próximos passos?
+
+
+Ótimo! Você já configurou seu ambiente e rodou seu primeiro código Node.js. Agora que os fundamentos estão estabelecidos, os próximos passos dependem muito do que você quer construir ou aprender. No entanto, aqui estão algumas direções comuns e importantes para quem está começando com Node.js:
+
+### 1. Entender o `package.json`
+
+O arquivo `package.json` é o coração do seu projeto Node.js. Dedique um tempo para entender suas seções principais:
+
+* **`name` e `version`**: Identificação do seu projeto.
+* **`description`**: Uma breve descrição do que o projeto faz.
+* **`main`**: O arquivo de entrada principal do seu aplicativo (geralmente `index.js` ou `app.js`).
+* **`scripts`**: Comandos customizados que você pode rodar via `npm run <nome-do-script>`. Por exemplo, você pode ter um script para iniciar o servidor (`"start": "node app.js"`) ou para rodar testes.
+* **`dependencies`**: Pacotes que seu projeto precisa para rodar em produção (como o Express que instalamos).
+* **`devDependencies`**: Pacotes que são necessários apenas para o desenvolvimento (como ferramentas de teste ou linters).
+
+### 2. Aprender o Básico de JavaScript Assíncrono
+
+Node.js é construído sobre um modelo de E/S não bloqueante, o que significa que ele lida com muitas operações de forma assíncrona. Dominar isso é crucial:
+
+* **Callbacks**: Funções passadas como argumento para serem executadas quando uma operação assíncrona é concluída.
+* **Promises**: Uma forma mais estruturada de lidar com operações assíncronas, evitando o "callback hell".
+* **`async/await`**: A sintaxe mais moderna e legível para trabalhar com Promises, tornando o código assíncrono parecido com o síncrono.
+
+### 3. Explorar Frameworks Web (Se Seu Foco For Web)
+
+Se você quer construir APIs ou aplicações web, frameworks são essenciais:
+
+* **Express.js**: O framework web mais popular e minimalista para Node.js. Excelente para aprender os fundamentos de roteamento, middlewares e construção de APIs REST. Você já deu o primeiro passo ao instalá-lo!
+* **NestJS**: Um framework mais robusto e opinativo, construído com TypeScript. Ótimo para projetos maiores e mais complexos que exigem uma arquitetura organizada (inspirado no Angular).
+* **Koa.js**: Desenvolvido pela mesma equipe do Express, mas mais leve e moderno, usando `async/await` desde o início.
+
+### 4. Conectar-se a Bancos de Dados
+
+A maioria das aplicações precisa persistir dados. Aprenda a integrar Node.js com bancos de dados:
+
+* **SQL (ex: PostgreSQL, MySQL, SQLite)**:
+    * **ORM (Object-Relational Mapper)**: Ferramentas como **Sequelize** ou **TypeORM** permitem interagir com o banco de dados usando objetos JavaScript, o que é mais produtivo e menos propenso a erros.
+* **NoSQL (ex: MongoDB, Redis)**:
+    * **ODM (Object-Document Mapper)**: Para MongoDB, **Mongoose** é a biblioteca padrão para modelagem de dados e interação.
+
+### 5. Gerenciamento de Ambientes e Variáveis de Ambiente
+
+Ao desenvolver, você precisará de configurações diferentes para desenvolvimento, teste e produção (ex: chaves de API, URLs de banco de dados).
+
+* Use o pacote **`dotenv`** para carregar variáveis de ambiente de um arquivo `.env` para `process.env`. Isso é crucial para manter informações sensíveis fora do controle de versão.
+
+### 6. Testes Automatizados
+
+Escrever testes é uma prática essencial para garantir a qualidade e a manutenção do seu código:
+
+* **Jest**: Um framework de testes popular e completo, fácil de configurar.
+* **Mocha** e **Chai**: Outras opções populares para testes unitários e de integração.
+
+### 7. Versionamento de Código com Git/GitHub
+
+Se você ainda não usa, comece a usar Git e uma plataforma como GitHub. É fundamental para controle de versão, colaboração e portfólio.
+
+### 8. Boas Práticas e Organização de Código
+
+À medida que seus projetos crescem, a organização se torna vital:
+
+* **Modularização**: Divida seu código em módulos menores e reutilizáveis.
+* **Padrões de Projeto**: Entenda padrões comuns que podem ser aplicados em Node.js.
+* **Linting e Formatação**: Use ferramentas como ESLint e Prettier (mencionadas anteriormente) para manter um estilo de código consistente e identificar problemas.
+
+---
+
+**Por onde começar?**
+
+Sugiro focar primeiro na **programação assíncrona com Promises e `async/await`**, e em seguida, mergulhar mais fundo no **Express.js** e na construção de uma API REST simples. Conforme você avança, a necessidade de banco de dados, testes e variáveis de ambiente surgirá naturalmente.
+----
+## Dicas de Atalhos para CMD - prompts
+
+![Atalhos para CMD - Prompts ](https://github.com/Alisson-Fonseca-Frash/imagens/blob/33456ad88692c88ac34beb9c93047516334f3ac4/atlhos%20-%20codigos%20para%20CMD%20-%20prompt%20de%20comando.png)
